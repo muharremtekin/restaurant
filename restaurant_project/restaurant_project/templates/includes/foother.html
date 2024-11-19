@@ -1,0 +1,35 @@
+<footer class="bg-dark text-light py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <h5>İletişim</h5>
+                <address class="mb-0">
+                    <p><i class="fas fa-map-marker-alt"></i> Örnek Mahallesi, Örnek Sokak No:1</p>
+                    <p><i class="fas fa-phone"></i> +90 (555) 123 45 67</p>
+                    <p><i class="fas fa-envelope"></i> info@restaurant.com</p>
+                </address>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>Hızlı Linkler</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'menu:list' %}" class="text-light">Menü</a></li>
+                    <li><a href="{% url 'reservation:create' %}" class="text-light">Rezervasyon</a></li>
+                    <li><a href="{% url 'about' %}" class="text-light">Hakkımızda</a></li>
+                    <li><a href="{% url 'contact' %}" class="text-light">İletişim</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>Bizi Takip Edin</h5>
+                <div class="social-links">
+                    <a href="#" class="text-light me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-light me-2"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr class="my-4">
+        <div class="text-center">
+            <p class="mb-0">&copy; {% now "Y" %} Restaurant. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+</footer>

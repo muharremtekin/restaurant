@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Rezervasyon - Restaurant
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Masa Rezervasyonu</h4>
+          </div>
+          <div class="card-body">
+            <form method="post" class="needs-validation" novalidate>
+              {% csrf_token %}
+
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="date" class="form-label">Tarih</label>
+                  <input type="date" class="form-control" id="date" name="date" required min="{{ today|date:'Y-m-d' }}" />
+                  <div class="invalid-feedback">Lütfen geçerli bir tarih seçin</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="time" class="form-label">Saat</label>
+                  <select class="form-select" id="time" name="time" required>
+                    <option value="">Saat Seçin</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="18:00">18:00</option>
+                    <option value="19:00">19:00</option>
+                    <option value="20:00">20:00</option>
+                    <option value="21:00">21:00</option>
+                  </select>
+                  <div class="invalid-feedback">Lütfen bir saat seçin</div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="party_size" class="form-label">Kişi Sayısı</label>
+                  <select class="form-select" id="party_size" name="party_size" required>
+                    <option value="">Kişi Sayısı Seçin</option>
+                    {% for i in '12345678'|make_list %}
+                      <option value="{{ i }}">{{ i }} Kişi</option>
+                    {% endfor %}
+                  </select>
+                  <div class="invalid-feedback">Lütfen kişi sayısı seçin</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="location" class="form-label">Konum Tercihi</label>
+                  <select class="form-select" id="location" name="location">
+                    <option value="indoor">İç Mekan</option>
+                    <option value="outdoor">Dış Mekan</option>
+                    <option value="balcony">Balkon</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="special_requests" class="form-label">Özel İstekler</label>
+                <textarea class="form-control" id="special_requests" name="special_requests" rows="3" placeholder="Varsa özel isteklerinizi belirtebilirsiniz"></textarea>
+              </div>
+
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Rezervasyon Yap</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    document.getElementById('date').addEventListener('change', validateReservationDate)
+  </script>
+{% endblock %}
